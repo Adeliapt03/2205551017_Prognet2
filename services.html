@@ -26,14 +26,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Kelly
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -76,27 +68,27 @@
         </div>
 
             <h1 class="text-center">Please Fill the Form bellow</h1>
-              <form id="formbio" action="tampil.php" method="POST">
+              <form name="formbio" action="tampil.php" method="POST" onsubmit="return validateForm()">
                 <div class="form-group mb-4">
                   <label for="fullname">Full Name :</label>
-                  <input type="text" class="form-control" id="fullname" name="fullname" required>
+                  <input type="text" class="form-control" name="fullname">
                 </div>
 
                 <div class="form-group mb-4">
                   <label for="nickname">Nick Name :</label>
-                  <input type="text" class="form-control" id="nickname" name="nickname" required>
+                  <input type="text" class="form-control" name="nickname">
                 </div>
               
                 <div class="form-group mb-4">
                     <label for="nim">NIM :</label>
-                    <input type="text" class="form-control" id="nim" name="nim" required>
+                    <input type="text" class="form-control" name="nim">
                 </div>
                 <div class="form-group mb-4">
                   <label for="email">Email :</label>
-                  <input type="text" class="form-control" id="email" name="email" required>
+                  <input type="text" class="form-control" name="email">
               </div>
                 <div class="form-group mb-4">
-                  <label for="batchofstudent" class="form-label">Batch of Student :</label>
+                  <label>Batch of Student :</label>
                   <select class="form-select" name="batchofstudent" aria-label="Default select example">
                     <option selected>Select this option bellow</option>
                     <option value="2020">2020</option>
@@ -142,6 +134,12 @@
               document.forms["formbio"]["nickname"].focus();
               return false;
           }
+          // Validasi Nick Name
+          if (document.forms["formbio"]["nim"].value == "") {
+              alert("Write your nim here");
+              document.forms["formbio"]["nim"].focus();
+              return false;
+          }
           // Validasi Email
           if (document.forms["formbio"]["email"].value == "") {
               alert("Your active email");
@@ -149,9 +147,9 @@
               return false;
           }
           // Validasi Batch of Student
-          if (document.forms["formbio"]["batch of student"].value == "") {
+          if (document.forms["formbio"]["batchofstudent"].value == "") {
               alert("Which batch you are");
-              document.forms["formbio"]["batch of student"].focus();
+              document.forms["formbio"]["batchofstudent"].focus();
               return false;
           }
           // Validasi Gender
