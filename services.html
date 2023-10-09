@@ -89,7 +89,7 @@
               </div>
                 <div class="form-group mb-4">
                   <label>Batch of Student :</label>
-                  <select class="form-select" name="batchofstudent" aria-label="Default select example">
+                  <select class="form-select" name="batchofstudent">
                     <option selected>Select this option bellow</option>
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
@@ -147,17 +147,12 @@
               return false;
           }
           // Validasi Batch of Student
-          var batchofstudent = document.getElementsByName('batchofstudent[]');
-          var genValue = false;
-            for(var i=0; i<batchofstudent.length;i++){
-              if(batchofstudent[i].checked == true){
-                  genValue = true;    
+          if (document.forms["formbio"]["batchofstudent"].selectedIndex < 1){
+              alert("Fill the batch first!");
+              document.forms["formbio"]["batchofstudent"].focus();
+              return false;   
               }
-            }
-            if(!genValue){
-              alert("Upss fill the batch of student!");
-              return false;
-            }
+            
           // Validasi Gender
           var gender = document.getElementsByName('gender');
           var genValue = false;
