@@ -147,11 +147,17 @@
               return false;
           }
           // Validasi Batch of Student
-          if (document.forms["formbio"]["batchofstudent"].value == "") {
-              alert("Which batch you are");
-              document.forms["formbio"]["batchofstudent"].focus();
+          var batchofstudent = document.getElementsByName('batchofstudent[]');
+          var genValue = false;
+            for(var i=0; i<batchofstudent.length;i++){
+              if(batchofstudent[i].checked == true){
+                  genValue = true;    
+              }
+            }
+            if(!genValue){
+              alert("Upss fill the batch of student!");
               return false;
-          }
+            }
           // Validasi Gender
           var gender = document.getElementsByName('gender');
           var genValue = false;
@@ -161,7 +167,7 @@
               }
             }
             if(!genValue){
-              alert("Choose your gender");
+              alert("Choose your gender!");
               return false;
             }
           // Validasi Class Day
@@ -173,7 +179,7 @@
               }
             }
             if(!genValue){
-              alert("Which day your class day");
+              alert("Which day your class?");
               return false;
             }
         }
