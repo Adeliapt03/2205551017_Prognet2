@@ -59,7 +59,10 @@
 
   </header><!-- End Header -->
 
-  <main id="main">
+  <main id="main"><!-- Start main -->
+
+  <!-- ======= Start Form ======= -->
+  <main id="main"><!-- Start main -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services form-mf sect-pt4 route">
@@ -73,7 +76,7 @@
         </div>
 
             <h1 class="text-center">Please Fill the Form bellow</h1>
-              <form id="formbio" action="tampil.html" method="GET">
+              <form id="formbio" action="tampil.php" method="POST">
                 <div class="form-group mb-4">
                   <label for="fullname">Full Name :</label>
                   <input type="text" class="form-control" id="fullname" name="fullname" required>
@@ -93,8 +96,8 @@
                   <input type="text" class="form-control" id="email" name="email" required>
               </div>
                 <div class="form-group mb-4">
-                  <label for="batch of student" class="form-label">Batch of Student :</label>
-                  <select class="form-select" aria-label="Default select example">
+                  <label for="batchofstudent" class="form-label">Batch of Student :</label>
+                  <select class="form-select" name="batchofstudent" aria-label="Default select example">
                     <option selected>Select this option bellow</option>
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
@@ -103,47 +106,21 @@
                   </select>
                 </div>
                 <div>
-                  <label for="gender" class="form-label">Gender:</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gender" id="gender" required>
-                  <label class="form-check-label" for="gender" value="Male">
-                    Male
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="gender" id="gender" required>
-                  <label class="form-check-label" for="gender" value="Female">
-                    Famale
-                  </label>
+                  <label>Gender :</label>
+                  <p><input class="me-1" type='radio' name='gender' value='Male'>Male</p>
+                  <p><input class="me-1" type='radio' name='gender' value='Female'>Female</p>
                 </div>
 
-                <div class="form-group mb-4">
-                  <label for="class day" class="form-label">Select a class day:</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="class day" value="option1">
-                  <label class="form-check-label" for="class day">Monday</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="class day" value="option1">
-                  <label class="form-check-label" for="class day">Tuesday</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="class day" value="option1">
-                  <label class="form-check-label" for="class day">Wednesday</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="class day" value="option1">
-                  <label class="form-check-label" for="class day">Thrusday</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="class day" value="option1">
-                  <label class="form-check-label" for="class day">Friday</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="class day" value="option1">
-                  <label class="form-check-label" for="class day">Saturday</label>
+                <div class="mb-3">
+                  <label>Class Day :</strong></label>
+                  <p>
+                    <input class="me-1" type='checkbox' name='classday[]' value='Monday'>Monday
+                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Tuesday'>Tuesday
+                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Wednesday'>Wednesday
+                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Thursday'>Thursday
+                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Friday'>Friday
+                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Saturday'>Saturday
+                  </p>
                 </div>
       
                 <div>
@@ -151,9 +128,60 @@
                 </div>
             </form>
         </div>
-      </section>
-       
-    </section><!-- End Services Section -->
+      <script>
+        function validateForm() {
+          // Validasi Full Name
+          if (document.forms["formbio"]["fullname"].value == "") {
+              alert("Write your full name here");
+              document.forms["formbio"]["fullname"].focus();
+              return false;
+          }
+          // Validasi Nick Name
+          if (document.forms["formbio"]["nickname"].value == "") {
+              alert("Write your nick name here");
+              document.forms["formbio"]["nickname"].focus();
+              return false;
+          }
+          // Validasi Email
+          if (document.forms["formbio"]["email"].value == "") {
+              alert("Your active email");
+              document.forms["formbio"]["email"].focus();
+              return false;
+          }
+          // Validasi Batch of Student
+          if (document.forms["formbio"]["batch of student"].value == "") {
+              alert("Which batch you are");
+              document.forms["formbio"]["batch of student"].focus();
+              return false;
+          }
+          // Validasi Gender
+          var gender = document.getElementsByName('gender');
+          var genValue = false;
+            for(var i=0; i<gender.length;i++){
+              if(gender[i].checked == true){
+                  genValue = true;    
+              }
+            }
+            if(!genValue){
+              alert("Choose your gender");
+              return false;
+            }
+          // Validasi Class Day
+          var classday = document.getElementsByName('classday[]');
+          var genValue = false;
+            for(var i=0; i<classday.length;i++){
+              if(classday[i].checked == true){
+                  genValue = true;    
+              }
+            }
+            if(!genValue){
+              alert("Which day your class day");
+              return false;
+            }
+        }
+      </script>
+    </section>
+    <!-- ======= End Form ======= -->
 
   </main><!-- End #main -->
 
