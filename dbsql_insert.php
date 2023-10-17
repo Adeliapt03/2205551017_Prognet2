@@ -1,40 +1,65 @@
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  
-    <title>Tugas Javascript - Adell Bootstrap Template</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-  
-      <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<?php
+    $servername = "prognet.localnet";
+    $username = "2205551017";
+    $password = "2205551017";
+    $dbname = "db_2205551017";
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    // membentuk koneksi ke database mysql
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    $sql = "INSERT INTO tb_student (full_name,nick_name, nim, email, batch_of_student, gender, class_day) VALUES
+            ('$_POST[fullname]','$_POST[nickname]','$_POST[nim]','$_POST[email]','$_POST[batchofstudent]','$_POST[gender]','$_POST[classday]')";
+    if ($conn->query($sql) === TRUE){
+        echo "valid data";
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Form Result</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/logo-home-page.png" rel="icon">
+  <link href="assets/img/logo-home-page.png" rel="logo-icon">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Kelly
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top bg-image" style="background-image: url(assets/img/home-bg.jpg)">
+    <div class="container d-flex align-items-center justify-content-between">
+      <h1 class="logo"><a href="index.html">Adell</a></h1>
+  <!-- ======= Start Navbar ======= -->
+  <nav id="navbar" class="navbar">
+    <ul>
+      <li><a class="nav-link scrollto" href="index.html">Home</a></li>
+      <li><a class="nav-link scrollto" href="dbsql_select.php">Data List</a></li>
+    </ul>
+    <i class="bi bi-list mobile-nav-toggle"></i>
+  </nav>
+  <!-- ======= End navbar ======= -->
+    </div>
+  </header>
+  <!-- ======= End Header ======= -->
+
   <main id="main"><!-- Start main -->
 
-<!-- ======= Start Hasil Form ======= -->
+  <!-- ======= Start Hasil Form ======= -->
 <section id="form" class="form-mf sect-pt4 route">
   <div class="container mt-5">
     <h1 class="text-center">Form Result</h1>
@@ -78,31 +103,22 @@
               echo "<td>".":"."</td>";
               echo "<td>".$gender = $_POST['gender']."</td>";
               echo "</tr>";
-              // kolom class day
-              if (isset($_POST['classday'])) {
-                  $classday = $_POST['classday'];
-                  echo "<tr>";
-                  echo "<td>"."Class day"."</td>";
-                  echo "<td>".":"."</td>";
-                  echo "<td>"."Which day your class day :"."</td>";
-                  echo "</tr>";
-                  for ($i=0; $i < count($classday) ; $i++){
-                      echo "<tr>";
-                      echo "<td>".""."</td>";
-                      echo "<td>".""."</td>";
-                      echo "<td>"."- ".$classday[$i]."</td>";
-                      echo "</tr>";
-                  }
+              
+                // kolom classday
+                echo "<tr>";
+                echo "<td>"."Classday"."</td>";
+                echo "<td>".":"."</td>";
+                echo "<td>".$classday = $_POST['classday']."</td>";
+                echo "</tr>";
               }
-            }
-          ?>
-        </thead>
-      </table>
-  </div>
-</section>
-<!-- ======= End Hasil Form ======= -->
-
-</main><!-- End #main -->
+              ?>
+              </thead>
+            </table>
+        </div>
+      </section>
+      <!-- ======= End Hasil Form ======= -->
+      
+      </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

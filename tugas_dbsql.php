@@ -1,3 +1,13 @@
+<?php
+    $servername = "prognet.localnet";
+    $username = "2205551017";
+    $password = "2205551017";
+    $dbname = "db_2205551017";
+
+    // membentuk koneksi ke database mysql
+    $conn = new mysqli($servername, $username, $password, $dbname);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +15,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tugas Javascript - Adell Bootstrap Template</title>
+  <title>Adell Bootstrap Template - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -29,7 +39,6 @@
 </head>
 
 <body>
-
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -40,12 +49,11 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a class="active" href="services.html">Tugas Javascript</a></li>
+          <li><a href="tugas_dbsql.php">My DBSQL Task</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+
 
     </div>
 
@@ -61,14 +69,14 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Javascript Tasks</h2>
+          <h2>UDAYANA STUDENT</h2>
           <p>Internet Programming</p>
           <p>Class A / 13.30-16.00</p>
           <p>Instructor: Mr. I Nyoman Piarsa S.T.,M.T</p>
         </div>
 
             <h1 class="text-center">Please Fill the Form bellow</h1>
-              <form name="formbio" action="tampil.php" method="POST" onsubmit="return validateForm()">
+              <form name="formbio" action="dbsql_insert.php" method="POST" onsubmit="return validateForm()">
                 <div class="form-group mb-4">
                   <label for="fullname">Full Name :</label>
                   <input type="text" class="form-control" name="fullname">
@@ -103,23 +111,16 @@
                   <p><input class="me-1" type='radio' name='gender' value='Female'>Female</p>
                 </div>
 
-                <div class="mb-3">
-                  <label>Class Day :</strong></label>
-                  <p>
-                    <input class="me-1" type='checkbox' name='classday[]' value='Monday'>Monday
-                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Tuesday'>Tuesday
-                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Wednesday'>Wednesday
-                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Thursday'>Thursday
-                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Friday'>Friday
-                    <input class="ms-4 me-1" type='checkbox' name='classday[]' value='Saturday'>Saturday
-                  </p>
-                </div>
-      
-                <div>
-                  <button type="send" class="btn btn-primary mb-4">Send</button>
-                </div>
-            </form>
-        </div>
+          <div class="form-group mb-3">
+            <label>Class Day :</label>
+            <input type="text" name="classday" id="classday" class="form-control" placeholder="classday">
+          </div>
+          <div>
+            <button type="send" name="send" class="btn btn-primary mb-4">Send</button>
+          </div>
+
+        </form>
+      </div>
       <script>
         function validateForm() {
           // Validasi Full Name
@@ -166,17 +167,11 @@
               return false;
             }
           // Validasi Class Day
-          var classday = document.getElementsByName('classday[]');
-          var genValue = false;
-            for(var i=0; i<classday.length;i++){
-              if(classday[i].checked == true){
-                  genValue = true;    
-              }
-            }
-            if(!genValue){
-              alert("Which day your class?");
-              return false;
-            }
+        if (document.forms["formBiodata"]["classday"].value == "") {
+            alert("What day is your class day?");
+            document.forms["formbio"]["classday"].focus();
+            return false;
+        }
         }
       </script>
     </section>
